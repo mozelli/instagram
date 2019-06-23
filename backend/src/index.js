@@ -8,7 +8,17 @@ const app = express();
 const server = require('http').Server(app);
 const io = require('socket.io')(server);
 
-mongoose.connect('mongodb+srv://mozelli:mozelli@cluster0-44xx3.mongodb.net/test?retryWrites=true&w=majority', {useNewUrlParser: true});
+mongoose.connect(
+	'mongodb+srv://mozelli:mozelli@cluster0-44xx3.mongodb.net/test?retryWrites=true&w=majority', 
+	{useNewUrlParser: true})
+.then(
+	() => {
+		console.log('Connected in the database.');
+	},
+	(err) => {
+		console.log(`An error was detected in the database connection: ${err}`);
+	}
+);
 
 app.use((req, res, next) => {
 	req.io = io;
@@ -22,5 +32,9 @@ app.use(cors());
 
 app.use(require('./routes'));
 
-const PORT = 3000;
-server.listen(3000, console.log(`Server running on http://localhost:${PORT}`));
+app.use((err, req, res, next) => {
+	res.json({error: err.message});
+})
+
+const PORT = 3001;
+server.listen(PORT, console.log(`Server running on http://localhost:${PORT}`));

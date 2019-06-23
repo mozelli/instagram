@@ -11,7 +11,7 @@ module.exports = {
 		const { author, place, description, hashtags } = req.body;
 		const { filename: image } = req.file;
 
-		const [name] = image.split('.');
+		const name = image.split('.');
 		const filename = `${name}.jpg`;
 
 		const post = await Post.create({
@@ -19,7 +19,7 @@ module.exports = {
 			place,
 			description,
 			hashtags,
-			filename
+			image
 		});
 
 		req.io.emit('post', post);
