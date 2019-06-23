@@ -1,4 +1,5 @@
 /backend/node_modules
 /backend/uploads
+/backend/src/config
 /_frontend
 /frontend/src/environments

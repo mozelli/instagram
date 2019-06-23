@@ -2,6 +2,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
 const path = require('path');
+const config = require('./config/config');
 
 const app = express();
 
@@ -9,7 +10,7 @@ const server = require('http').Server(app);
 const io = require('socket.io')(server);
 
 mongoose.connect(
-	'mongodb+srv://mozelli:mozelli@cluster0-44xx3.mongodb.net/test?retryWrites=true&w=majority', 
+	config.infoConectionMongoDB, 
 	{useNewUrlParser: true})
 .then(
 	() => {
