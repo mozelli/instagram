@@ -1,0 +1,27 @@
+<div class="row pt-3">
+	<div class="col-12">
+		<h3 class="text-center">Login</h3>
+	</div>
+</div>
+<div class="row">
+	<div class="col-12">
+		<form [formGroup]="formLogin">
+			<div class="form-group">
+				<input type="text" placeholder="E-mail" class="form-control" formControlName="email">
+			</div>
+			<div class="form-group">
+				<input type="password" placeholder="Senha" class="form-control" formControlName="password">
+			</div>
+			<div class="form-group">
+				<button class="btn btn-info btn-block" (click)="send()">Entrar!</button>
+			</div>
+		</form>
+	</div>
+</div>
+<div class="row">
+	<div class="col-12">
+		<p class="text-center">
+			Não tem uma conta? <a [routerLink]="['/newUser']">Cadastre-se!</a>
+		</p>
+	</div>
+</div>

@@ -6,11 +6,12 @@ import { AppRoutingModule } from './app-routing.module';
 
 //Components
 import { AppComponent } from './app.component';
-
+import { HeaderComponent } from './header/header.component';
 
 //Modules
 import { FeedModule } from './feed/feed.module';
-import { HeaderComponent } from './header/header.component';
+import { LoginModule } from './login/login.module';
+import { UserModule } from './user/user.module';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,9 @@ import { HeaderComponent } from './header/header.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FeedModule
+    FeedModule,
+    LoginModule,
+    UserModule
   ],
   providers: [],
   bootstrap: [AppComponent]

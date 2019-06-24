@@ -5,7 +5,17 @@
 						<span>{{ post.author }}</span>
 						<span class="place">{{ post.place }}</span>
 					</div>
-					<img src="assets/more.svg" alt="Mais">		
+					<div class="dropdown dropleft">
+  					<!--button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    					Dropdown button
+  					</button-->
+  					<img src="assets/more.svg" alt="Mais" class="dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">		
+  					<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+    					<a class="dropdown-item"><i class="material-icons">edit</i> Editar</a>
+    					<div class="dropdown-divider"></div>
+    					<a class="dropdown-item" (click)="deletePost(post._id)"><i class="material-icons">delete</i> Excluir</a>
+  					</div>
+					</div>
 				</header>
 				<img src="http://localhost:3001/files/{{ post.image }}" class="img-fluid" alt="">			
 				

@@ -1,0 +1,31 @@
+<div class="row">
+	<div class="col-12">
+		<h3>Novo usuário</h3>
+	</div>
+</div>
+<div class="row">
+	<div class="col-12">
+		<form [formGroup]="formUser">
+			<div class="form-group">
+				<input type="text" placeholder="Nome" class="form-control" formControlName="name">
+			</div>
+			<div class="form-group">
+				<input type="text" placeholder="Data de nascimento" class="form-control" formControlName="birthday">
+			</div>
+			<div class="form-group">
+				<input type="text" placeholder="E-mail" class="form-control" formControlName="email">
+			</div>
+			<div class="form-group">
+				<input type="text" placeholder="Senha" class="form-control" formControlName="password">
+			</div>
+			<div class="form-group">
+				<input type="text" placeholder="Repita a senha" class="form-control">
+			</div>
+			<div class="form-group">
+				<button class="btn btn-info" (click)="send()">
+					Cadastrar!
+				</button>
+			</div>
+		</form>
+	</div>
+</div>

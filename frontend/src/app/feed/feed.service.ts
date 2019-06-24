@@ -32,4 +32,8 @@ export class FeedService {
   addLike(id) {
   	return this.httpClient.post(`${this.API}/posts/${id}/like`, id);
   }
+
+  delete(id) {
+    return this.httpClient.delete(`${this.API}/posts/${id}`, id);
+  }
 }

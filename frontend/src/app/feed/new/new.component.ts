@@ -49,7 +49,7 @@ export class NewComponent implements OnInit {
   	data.append('image', this.image);
 
   	this.feedService.post(data).subscribe((result) => {
-  		this.routes.navigate(['/']);
+  		this.routes.navigate(['/feed']);
   	});
   }
 
