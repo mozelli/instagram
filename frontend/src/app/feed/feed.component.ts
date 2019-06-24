@@ -31,7 +31,7 @@ export class FeedComponent implements OnInit {
     });
 
     socket.on('like', likedPost => { 
-      this.posts.map(post => 
+      this.posts = this.posts.map(post => 
         post._id == likedPost._id ? likedPost : post
       );
     });
