@@ -17,6 +17,9 @@ mongoose.connect(
     console.log(`An error was detected in the database connection: ${err}`);
   });
 
+app.use(express.json()) // for parsing application/json
+app.use(express.urlencoded({ extended: true })) // for parsing application/x-www-form-urlencoded
+
 app.use((req, res, next) => {
   req.io = io;
   next();
@@ -30,9 +33,9 @@ app.use(cors());
 
 app.use(require('./routes'));
 
-app.use((err, req, res, next) => {
-  res.json({ error: err.message });
-});
+//app.use((err, req, res, next) => {
+  //res.send({ error: err.message });
+//});
 
 const PORT = 3001;
 server.listen(PORT, console.log(`Server running on http://localhost:${PORT}`));

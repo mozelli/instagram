@@ -7,6 +7,7 @@ module.exports = {
   },
 
   async store(req, res) {
+
     const
       {
         author, place, description, hashtags,
@@ -22,4 +23,13 @@ module.exports = {
 
     return res.json(post);
   },
+
+  async delete(req, res) {
+    //res.json(req.params);
+    const post = await Post.deleteOne({ _id: req.params.id });
+
+    req.io.emit('delete', post);
+
+    return res.json(post.n);
+  }
 };
