@@ -6,11 +6,12 @@ const LikeController = require('./controllers/LikeController');
 const LoginController = require('./controllers/LoginController');
 const UserController = require('./controllers/UserController');
 const AuthController = require('./controllers/AuthController');
+const authMiddleware = require('./middlewares/auth');
 
 const routes = new express.Router();
 const upload = multer(uploadsConfig);
 
-routes.get('/posts', PostController.index);
+routes.get('/posts',authMiddleware, PostController.index);
 routes.post('/posts', upload.single('image'), PostController.store);
 routes.post('/posts/:id/like', LikeController.store);
 routes.delete('/posts/:id', PostController.delete);
