@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import io from 'socket.io-client';
 import { Router } from '@angular/router';
-
-import { FeedService } from './feed.service';
 import { environment } from '../../environments/environment';
+
+import { PostService } from '../post/post.service';
+import { Post } from '../post/post.model';
 
 @Component({
   selector: 'app-feed',
@@ -12,18 +13,19 @@ import { environment } from '../../environments/environment';
 })
 export class FeedComponent implements OnInit {
 
-	posts;
+	posts: Post[];
 
   constructor(
-    private feedService: FeedService,
+    private postService: PostService,
     private router: Router
     ) { }
 
   ngOnInit() {
     this.registerToSocket();
 
-  	this.feedService.get().subscribe((posts) => {
-  		this.posts = posts;
+  	this.postService.get().subscribe((posts) => {
+  		//console.log(posts);
+      this.posts = posts;
   	});
   }
 
@@ -41,20 +43,9 @@ export class FeedComponent implements OnInit {
     });
 
     socket.on('delete', result => { 
-      this.feedService.get().subscribe((posts) => {
+      this.postService.get().subscribe((posts) => {
       this.posts = posts;
     });
     });
   }
-
-  handleLike(id) {
-    this.feedService.addLike(id).subscribe(post => {} );
-  }
-
-  deletePost(id) {
-    //console.log(id);
-    //this.feedService.delete(id).subscribe(result => {this.router.navigate(['/feed'])});
-    this.feedService.delete(id).subscribe(result => {});
-  }
-
 }

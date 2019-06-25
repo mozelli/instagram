@@ -1,0 +1,33 @@
+<article>
+	<header>
+		<div class="user-info">
+			<span>{{ post.author }}</span>
+			<span class="place">{{ post.place }}</span>
+		</div>
+		<div class="dropdown dropleft">
+  		<img src="assets/more.svg" alt="Mais" class="dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">		
+  		<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+    		<a class="dropdown-item"><i class="material-icons">edit</i> Editar</a>
+    		<div class="dropdown-divider"></div>
+    		<a class="dropdown-item" (click)="deletePost(post._id)"><i class="material-icons">delete</i> Excluir</a>
+  		</div>
+		</div>
+	</header>
+	<img src="http://localhost:3001/files/{{ post.image }}" class="img-fluid" alt="">			
+				
+	<footer>
+		<div class="actions">
+			<button type="button" (click)="handleLike(post._id)">
+				<img src="assets/like.svg" alt="Like">	
+			</button>
+						
+			<img src="assets/comment.svg" alt="Comment">
+			<img src="assets/send.svg" alt="Send">
+		</div>
+		<strong>{{ post.likes }} curtida<span *ngIf="post.likes > 1">s</span></strong>
+		<p>
+			{{ post.description }}
+			<span>{{ post.hashtags }}</span>
+		</p>
+	</footer>
+</article>

@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 
 //Services
-import { FeedService } from '../feed.service';
+import { PostService } from '../post.service';
 
 @Component({
   selector: 'app-new',
@@ -18,7 +18,7 @@ export class NewComponent implements OnInit {
 
   constructor(
   		private formBuilder: FormBuilder,
-  		private feedService: FeedService,
+  		private feedService: PostService,
   		private routes: Router
   	) { }
 

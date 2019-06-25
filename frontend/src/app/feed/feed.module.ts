@@ -1,24 +1,22 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { HttpClientModule } from '@angular/common/http';
-import { ReactiveFormsModule } from '@angular/forms';
 
 
 //Components
 import { FeedComponent } from './feed.component';
-import { NewComponent } from './new/new.component';
 
-//Providers
+// Modules
+import { PostModule } from '../post/post.module';
 
 @NgModule({
   declarations: [
-  	FeedComponent,
-  	NewComponent
+  	FeedComponent
   ],
   imports: [
     CommonModule,
-    HttpClientModule,
-    ReactiveFormsModule
+    PostModule
+  ],
+  exports: [
   ],
   providers: [
   ]
