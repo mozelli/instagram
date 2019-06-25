@@ -1,4 +1,6 @@
 const Post = require('../models/Post');
+const path = require('path');
+const fs = require('fs');
 
 module.exports = {
   async index(req, res) {
@@ -21,15 +23,29 @@ module.exports = {
 
     req.io.emit('post', post);
 
-    return res.json(post);
+    return res.status(201).json(post);
   },
 
   async delete(req, res) {
-    //res.json(req.params);
-    const post = await Post.deleteOne({ _id: req.params.id });
 
-    req.io.emit('delete', post);
+    const posts = await Post.findOne({ _id: req.params.id });
 
-    return res.json(post.n);
+    const post = await Post.deleteOne({ _id: req.params.id }, (err) => {
+      if (err) {
+        return res.status(500).send({ error: 'Fail to delete the post.' });
+      } else {
+
+        try {
+          const filepath = path.resolve(__dirname, '..', '..', 'uploads/'+posts.image);
+          fs.unlinkSync(filepath);
+        } catch (err) {
+           return res.status(500).send({ msg: 'Error when tried to delete the post image.', error: err });
+        } finally {
+          req.io.emit('delete', posts);
+
+          return res.status(200).json({});
+        }
+      }
+    });
   }
 };

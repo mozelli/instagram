@@ -11,7 +11,7 @@ const authMiddleware = require('./middlewares/auth');
 const routes = new express.Router();
 const upload = multer(uploadsConfig);
 
-routes.get('/posts',authMiddleware, PostController.index);
+routes.get('/posts', PostController.index);
 routes.post('/posts', upload.single('image'), PostController.store);
 routes.post('/posts/:id/like', LikeController.store);
 routes.delete('/posts/:id', PostController.delete);
