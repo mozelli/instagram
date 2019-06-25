@@ -5,6 +5,7 @@ const PostController = require('./controllers/PostController');
 const LikeController = require('./controllers/LikeController');
 const LoginController = require('./controllers/LoginController');
 const UserController = require('./controllers/UserController');
+const AuthController = require('./controllers/AuthController');
 
 const routes = new express.Router();
 const upload = multer(uploadsConfig);
@@ -16,6 +17,7 @@ routes.delete('/posts/:id', PostController.delete);
 
 //routes.get('/login', LoginController.login);
 routes.post('/users', UserController.store);
-
+routes.post('/register', AuthController.index);
+routes.post('/authenticate', AuthController.authenticate);
 
 module.exports = routes;
